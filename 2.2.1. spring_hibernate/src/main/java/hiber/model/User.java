@@ -18,8 +18,24 @@ public class User {
 
    @Column(name = "email")
    private String email;
+   @OneToOne(cascade = CascadeType.ALL)
+   @JoinColumn(name = "carUser_id")
+   private Car carUser;
+   // создать геттер и сеттер
 
-   public User() {}
+   @Override
+   public String toString() {
+      return "User{" +
+              "id=" + id +
+              ", firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", email='" + email + '\'' +
+              ", carUser=" + carUser +
+              '}';
+   }
+
+   public User() {
+   }
    
    public User(String firstName, String lastName, String email) {
       this.firstName = firstName;
@@ -57,5 +73,13 @@ public class User {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   public Car getCar() {
+      return carUser;
+   }
+
+   public void setCar(Car carUser) {
+      this.carUser = carUser;
    }
 }
